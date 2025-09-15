@@ -1,3 +1,3 @@
-module github.com/cn4hub/snippetbox
+module snippetbox
 
 go 1.24
