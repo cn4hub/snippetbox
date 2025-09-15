@@ -10,7 +10,7 @@ import (
 // Define a home handler function which writes a byte slice containing
 // "Hello from Snippetbox" as the response body.
 func home(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello World"))
+	w.Write([]byte("Hello from snippetbox!\n"))
 }
 
 // Add a snippetView handler function
@@ -22,6 +22,11 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 	}
 	msg := fmt.Sprintf("Display a specific snippet with ID %d...", id)
 	w.Write([]byte(msg))
+}
+
+// Add a snippetCreatePost handler function.
+func snippetCreatePost(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Create a new snippet..."))
 }
 
 // Add a snippetCreate handler function
@@ -36,6 +41,7 @@ func main() {
 	mux.HandleFunc("GET /{$}", home) // Restrict this route to exact matches on / only
 	mux.HandleFunc("GET /snippet/view/{id}", snippetView)
 	mux.HandleFunc("GET /snippet/create", snippetCreate)
+	mux.HandleFunc("POST /snippet/create", snippetCreatePost)
 
 	// Print a log message to say that the server is starting.
 	log.Print("starting server on :4000")
